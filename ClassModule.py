@@ -14,8 +14,9 @@ class Module(object):
             NameProcess = win32process.GetModuleFileNameEx(HadleActionProcess, 0)
         except:
             pass
-        BufferSpisok = NameProcess.split("\\")
-        return BufferSpisok[-1]
+        else:
+            BufferSpisok = NameProcess.split("\\")
+            return BufferSpisok[-1]
 
     def moduleName(self):
         PCName = win32api.GetComputerName()
