@@ -9,8 +9,11 @@ class Module(object):
     def moduleExe(self):
         NameActionProcess = win32gui.GetForegroundWindow()
         t,p = win32process.GetWindowThreadProcessId(NameActionProcess)
-        HadleActionProcess = win32api.OpenProcess(0x0400|0x0010, False, p)
-        NameProcess = win32process.GetModuleFileNameEx(HadleActionProcess, 0)
+        try:
+            HadleActionProcess = win32api.OpenProcess(0x0400|0x0010, False, p)
+            NameProcess = win32process.GetModuleFileNameEx(HadleActionProcess, 0)
+        except:
+            pass
         BufferSpisok = NameProcess.split("\\")
         return BufferSpisok[-1]
 
@@ -25,7 +28,7 @@ class Module(object):
         return TimeLocal
 
     def moduleKeystroke(self):
-        pass
+        return ((win32api.GetTickCount() - win32api.GetLastInputInfo())/1000/60)
 
     def moduleRegKey(self):
         pass
