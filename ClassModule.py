@@ -1,7 +1,7 @@
 import win32gui
 import win32api
 import win32process
-
+import time
 
 
 class Module(object):
@@ -11,7 +11,8 @@ class Module(object):
         t,p = win32process.GetWindowThreadProcessId(NameActionProcess)
         HadleActionProcess = win32api.OpenProcess(0x0410, False, p)
         NameProcess = win32process.GetModuleFileNameEx(HadleActionProcess, 0)
-        return NameProcess
+        BufferSpisok = NameProcess.split("\\")
+        return BufferSpisok[-1]
 
     def moduleName(self):
         PCName = win32api.GetComputerName()
@@ -20,8 +21,12 @@ class Module(object):
         return resutName
 
     def moduleTime(self):
-        pass
+        TimeLocal = time.strftime("%x %X",)
+        return TimeLocal
 
     def moduleKeystroke(self):
+        pass
+
+    def moduleRegKey(self):
         pass
 
