@@ -9,7 +9,7 @@ class Module(object):
     def moduleExe(self):
         NameActionProcess = win32gui.GetForegroundWindow()
         t,p = win32process.GetWindowThreadProcessId(NameActionProcess)
-        HadleActionProcess = win32api.OpenProcess(0x0410, False, p)
+        HadleActionProcess = win32api.OpenProcess(0x0400|0x0010, False, p)
         NameProcess = win32process.GetModuleFileNameEx(HadleActionProcess, 0)
         BufferSpisok = NameProcess.split("\\")
         return BufferSpisok[-1]
